@@ -1,0 +1,65 @@
+{
+  "name": "@matali/next-translate-ts",
+  "version": "0.1.0",
+  "description": "Generate type definitions for next-translate",
+  "bugs": {
+    "url": "https://github.com/mateuszaliyev/next-translate-ts/issues"
+  },
+  "homepage": "https://github.com/mateuszaliyev/next-translate-ts#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateuszaliyev/next-translate-ts.git"
+  },
+  "keywords": [
+    "globalization",
+    "i18n",
+    "internationalization",
+    "locale",
+    "locales",
+    "next",
+    "nextjs",
+    "next.js",
+    "react",
+    "plugin",
+    "translate",
+    "translation",
+    "type",
+    "types",
+    "typescript"
+  ],
+  "license": "MIT",
+  "bin": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "fix": "npx eslint ./src/** --fix",
+    "lint": "npx eslint ./src/**",
+    "start": "node ./dist/index.js --experimental-json-modules"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "prettier": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.14",
+    "@types/prettier": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sort-destructure-keys": "^1.4.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-typescript-sort-keys": "^2.1.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "typescript": "^4.5.5"
+  },
+  "peerDependencies": {
+    "next-translate": "^1.1.0"
+  }
+}
