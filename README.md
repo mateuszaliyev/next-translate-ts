@@ -152,7 +152,7 @@ Next-translate-ts is a result of a repeating code across many of our projects. W
 
 ## Authors
 
-- Mateusz Aliyev (@mateuszaliyev)
+- Mateusz Aliyev ([@mateuszaliyev](https://github.com/mateuszaliyev))
 
 ## License
 
