@@ -1,6 +1,6 @@
 {
   "name": "@matali/next-translate-ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate type definitions for next-translate",
   "bugs": {
     "url": "https://github.com/mateuszaliyev/next-translate-ts/issues"
