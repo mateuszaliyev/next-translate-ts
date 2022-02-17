@@ -361,4 +361,20 @@ export const generate: Generate = async ({
   );
 
   log.info(`generated \`${useTranslationFileName}\` file`);
+
+  /* Generate `index` file. */
+  const indexFile = `
+    export * from "./types";
+    export { useTranslation } from "./${handleCase("use-translation", camel)}"
+  `;
+
+  const indexFileName = "index.ts";
+
+  await generateFile(
+    resolve(process.cwd(), output, indexFileName),
+    indexFile,
+    prettierConfig
+  );
+
+  log.info(`generated \`${indexFileName}\` file`);
 };
