@@ -107,17 +107,11 @@ Please follow these steps to have your contribution considered by the maintainer
    npm run build
    ```
 
-10. Start production server to check everything is working properly.
+10. Commit your changes.
 
-    ```
-    npm run start
-    ```
+11. Push the new branch up to the remote.
 
-11. Commit your changes.
-
-12. Push the new branch up to the remote.
-
-13. Open a pull request.
+12. Open a pull request.
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
@@ -286,9 +280,8 @@ All of the code is linted with [ESLint](https://eslint.org/) and formatted with 
   Examples:
 
   ```
-  chore/issue-templates
-  feat/button-component
-  fix/homepage-overflow
+  feat/use-translation
+  fix/empty-file-error
   ```
 
 ### Git Commit Messages
