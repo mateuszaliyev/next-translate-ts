@@ -31,14 +31,14 @@ Next-translate-ts is a Node.js command line tool that generates types based on y
 
 ### Features
 
-- [x] `useTranslation`
-- [ ] `withTranslaion`
-- [ ] `Trans`
-- [ ] `DynamicNamespaces`
-- [ ] `getT`
-- [ ] `I18nProvider`
-- [ ] `appWithI18n`
-- [ ] `loadNamespaces`
+- ✅ `useTranslation`
+- ✅ `getT`
+- ❌ `withTranslaion`
+- ❌ `Trans`
+- ❌ `DynamicNamespaces`
+- ❌ `I18nProvider`
+- ❌ `appWithI18n`
+- ❌ `loadNamespaces`
 
 ### How are types generated?
 
@@ -76,6 +76,19 @@ Run `next-translate-ts`. Make sure you are executing the command from the root d
 
 ```
 npx @matali/next-translate-ts -o path/to/your/output/directory
+```
+
+Use translations in your pages and components by importing from the designated directory.
+
+```tsx
+import { useTranslation } from "path/to/your/output/directory";
+
+export default function ExamplePage() {
+  const { lang, t } = useTranslation("common");
+  const example = t("variable-example", { count: 42 });
+
+  return <div>{example}</div>; // <div>Using a variable 42</div>
+}
 ```
 
 ## Configuration
