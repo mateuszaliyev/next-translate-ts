@@ -254,15 +254,25 @@ export const generate: Generate = async ({
       defaultNamespace ? `"${defaultNamespace}"` : "undefined"
     };
 
+    export type GetT = <N extends Namespace>(
+      locale?: Locale,
+      namespace?: N
+    ) => Promise<Translate<N, true>>;
+
     export interface I18n<N extends AnyNamespace = DefaultNamespace> {
       lang: Locale;
       t: Translate<N>;
     }
     
-    export type I18nKey<N extends AnyNamespace = DefaultNamespace> = N extends undefined
+    export type I18nKey<
+      N extends AnyNamespace = DefaultNamespace,
+      O extends boolean = false
+    > = N extends undefined
       ? keyof {
           [K in Namespace as NamespaceKeys<K>]: never;
         }
+      : O extends true
+      ? Key<ToNamespace<N>>
       :
           | Key<ToNamespace<N>>
           | keyof {
@@ -313,10 +323,10 @@ export const generate: Generate = async ({
       ? never
       : N;
     
-    export type Translate<N extends AnyNamespace = DefaultNamespace> = <
-      K extends I18nKey<N>,
-      R extends boolean = false
-    >(
+    export type Translate<
+      N extends AnyNamespace = DefaultNamespace,
+      O extends boolean = false
+    > = <K extends I18nKey<N, O>, R extends boolean = false>(
       i18nKey: K,
       query?: Query<N, K>,
       options?: {
@@ -342,6 +352,26 @@ export const generate: Generate = async ({
 
   log.info(`generated \`${typesFileName}\` file`);
 
+  /* Generate `get-t` file. */
+  const getTFile = `
+    import useNextTranslateGetT from "next-translate/getT";
+
+    import type { GetT } from "./types";
+    
+    export const getT: GetT = async (locale, namespace) =>
+      await useNextTranslateGetT(locale, namespace);
+  `;
+
+  const getTFileName = `${handleCase("get-t", camel)}.ts`;
+
+  await generateFile(
+    resolve(process.cwd(), output, getTFileName),
+    getTFile,
+    prettierConfig
+  );
+
+  log.info(`generated \`${getTFileName}\` file`);
+
   /* Generate `use-translation` file. */
   const useTranslationFile = `
     import useNextTranslateTranslation from "next-translate/useTranslation";
@@ -365,6 +395,7 @@ export const generate: Generate = async ({
   /* Generate `index` file. */
   const indexFile = `
     export * from "./types";
+    export { getT } from "./${handleCase("get-t", camel)}"
     export { useTranslation } from "./${handleCase("use-translation", camel)}"
   `;
 
